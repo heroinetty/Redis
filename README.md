@@ -125,7 +125,7 @@ setrange -- 设置指定可以的value的子字符串
     其中的4是指下标为4（包含4）的字符开始替换
 mset -- 一次设置多个key的值，成功返回OK表示所有的值都设置了，失败返回0表示没有任何值被设置。
 
-    > mset key1 python key c++
+    > mset key1 python key2 c++
     OK
 msetnx -- 依次设置多个值，成功返回OK表示所有的值都设置了，失败返回0表示没有任何值被设置。
 
@@ -145,7 +145,7 @@ getrange -- 获取指定看key的value值的子字符串。
     "itcas"
 mget -- 一次获取多个key的值，如果对应的key不存在，则对应返回nil。
 
-    > get key1 key2 key3
+    > mget key1 key2 key3
     1) "python"
     2) "c++"
     3) (nil)
