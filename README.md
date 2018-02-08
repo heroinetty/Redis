@@ -203,7 +203,7 @@ hincrby -- 指定的hash field加上给定值
     (integer) 1
     > hget myhash field3
     "20"
-    hincrby myhash field3 -8
+    > hincrby myhash field3 -8
     (integer) 12
     > hget myhash field3
     "12"
