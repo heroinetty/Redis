@@ -60,8 +60,8 @@ Redis是一个开源的key-value存储系统。与Memcached类似，Redis将大�
     make
     sudo make install
 ## Redis基本操作
-终端运行服务器：[root@VM_88_201_centos ~]# redis-server
-指定配置文件运行服务器：[root@VM_88_201_centos redis-3.0.6]# redis-server [./redis.conf]
+终端运行服务器：[root@VM_88_201_centos ~]# redis-server  
+指定配置文件运行服务器：[root@VM_88_201_centos redis-3.0.6]# redis-server [./redis.conf]  
 开启客户端：[root@VM_88_201_centos redis-3.0.6]# redis-cli  
 127.0.0.1:6379>  
 设置/获取key：  
