@@ -296,7 +296,8 @@ hgetall -- 获取某个hash中全部的field及value。
     6) "12"  
 
 ### List——列表
-List说白了就是链表（Redis使用双端链表实现的List），相信学过数据结构的人都应该能理解其结构。使用List结构，我们可以轻松地实现最新消息排行等功能（如新浪微博的TimeLiness）。List的另一个应用就是消息队列，可以使用List的PUSH操作，将任务存在List中，然后工作线程再用POP操作将任务取出进行运行执行。Redis还提供了操作List中某一段元素的API，你可以直接查询，删除List中的某一段元素。  
+List说白了就是链表（Redis使用双端链表实现的List），相信学过数据结构的人都应该能理解其结构。使用List结构，我们可以轻松地实现最新消息排行等功能（如新浪微博的TimeLiness）。List的另一个应用就是消息队列，可以使用List的PUSH操作，将任务存在List中，然后工作线程再用POP操作将任务取出进行运行执行。Redis还提供了操作List中某一段元素的API，你可以直接查询，删除List中的某一段元素。
+
 应用场景：1、微博TimeLine 2、消息队列
 
 ### Set——集合
