@@ -32,7 +32,11 @@ redis配置文件被分成了几大区域，他们分别是：
     > 指定redis只接收来自于该IP地址的请求，如果不进行设置，那么将处理所有请求。在生产环境中最好设置该项；
 
 - loglevel debug
-    > 指定日志记录级别，其中Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose。debug表示记录很多信息，用于开发和测试。verbose表示记录有用的信息，但不像debug会记录那么多。notice表示普通的verbose，常用语生产环境。warning表示只有非常重要或者严重的信息会记录到日志；
+    > 指定日志记录级别，其中Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose。  
+    > debug表示记录很多信息，用于开发和测试。  
+    > verbose表示记录有用的信息，但不像debug会记录那么多。  
+    > notice表示普通的verbose，常用语生产环境。  
+    > warning表示只有非常重要或者严重的信息会记录到日志；
 
 - logfile /var/log/redis/redis.log
     > 配置log文件地址，默认值为stdout。若后台默认会输出到/dev/null；
