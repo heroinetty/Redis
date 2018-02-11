@@ -1,7 +1,7 @@
 # Redis之高性能服务器存储应用
 
 ## Redis简介
-Redis是一个开源的key-value存储系统。与Memcached类似，Redis将大部分数据存储在内存中，支持的数据类型包括：字符串、哈希表、链表、集合、有序集合及基于这些数据结构类型的相关操作。Redis使用C语言开发，在大多数像Linux、BSD和Solaris等POSIX系统上无需任何外部依赖就可以使用。Redis支持的客服端语言也非常丰富，常用的计算机语言如C、C#、C++、Object-C、PHP、Python、Java、Perl、Lua、Erlang等均有可用的服务端来访问Redis服务器。当前Redis的应用非常广泛，国内像新浪、淘宝，国外像Fixckr、GitHub等均在使用Redis的缓存服务。
+Redis是一个开源的key-value存储系统。与Memcached类似，Redis将大部分数据存储在内存中，支持的数据类型包括：字符串、哈希表、链表、集合、有序集合及基于这些数据结构类型的相关操作。Redis使用C语言开发，在大多数像Linux、BSD和Solaris等POSIX系统上无需任何外部依赖就可以使用。Redis支持的客服端语言也非常丰富，常用的计算机语言如C、C#、C++、Object-C、PHP、Python、Java、Perl、Lua、Erlang等均有可用的服务端来访问Redis服务器。当前Redis的应用非常广泛，国内像新浪、淘宝，国外像Flickr、GitHub等均在使用Redis的缓存服务。
 
 一句话简介：Redis基于内存操作，读写速度很快，100000读写/秒，可以作为内存型缓存服务器，提供持久化存储方案，可以作为结构不复杂的数据库使用。
 
@@ -24,7 +24,7 @@ Redis是一个开源的key-value存储系统。与Memcached类似，Redis将大�
 2.排行榜应用，取TOP N 操作
 
     这个需求与上面的不同之处在于，前面操作以时间为权重，这个是一某个条件为权重，比如按顶的次数排序，
-    这时候就需要我们的sorted set出马了，将你要排序的值设置成sorted set的socred,
+    这时候就需要我们的sorted set出马了，将你要排序的值设置成sorted set的socred，
     将具体的数据设置成对应的Value，每次只需要执行一条ZADD命令即可。
     
 3.需要精准设定过期时间的应用
