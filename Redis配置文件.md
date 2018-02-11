@@ -23,7 +23,7 @@ redis配置文件被分成了几大区域，他们分别是：
     > 默认情况下，redis不是在后台运行的。如果需要在后台运行，把该项的值更改为yes；
 
 - pidfile /var/run/redis.pid
-    > 当Redis在后台运行进行的时候，Redis默认会把pid文件放在/var/run/redis.pid，你可以配置其他地址。当运行多个redis服务时，需要指定不同的pid文件和端口；
+    > 当Redis在后台运行的时候，Redis默认会把pid文件放在/var/run/redis.pid，你可以配置其他地址。当运行多个redis服务时，需要指定不同的pid文件和端口；
 
 - port 6379
     > 指定redis运行的端口，默认是6379；
@@ -38,10 +38,10 @@ redis配置文件被分成了几大区域，他们分别是：
     > 配置log文件地址，默认值为stdout。若后台默认会输出到/dev/null；
 
 - databases 16
-    > 可用数据库数，默认值为15，默认数据库为0。数据库范围在0-（database-1）之间；
+    > 可用数据库数，默认值为16，默认数据库为0。数据库范围在0-（database-1）之间；
 
 - save
-    > 保存数据到磁盘格式为save，指出在多长时间内，有多少次更新操作，就将数据同步到数据文件rdb。相当于条件出发抓取快照，这个可以多个条件配合。save 900 1 就表示900秒内有1个key被改变就保存数据到磁盘；
+    > 保存数据到磁盘格式为save < seconds > < changes >，指出在多长时间内，有多少次更新操作，就将数据同步到数据文件rdb。相当于条件触发抓取快照，这个可以多个条件配合。save 900 1 就表示900秒内有1个key被改变就保存数据到磁盘；
 
 - rdbcompression yes
     > 存储至本地数据时（持久化到rdb文件）是否压缩数据，默认为yes；
@@ -49,7 +49,7 @@ redis配置文件被分成了几大区域，他们分别是：
 - dbfilename dump.rdb
     > 本地持久化数据库文件名，默认值为dump.rdb；
 
-- dir /
+- dir ./
     > 工作目录，数据库镜像备份的文件放置的路径。这里的路径跟文件名要分开配置是因为redis在进行备份时，先会将当前数据库的状态写入到一个临时文件中，在备份完成时，再把该临时文件替换为上面所指定的文件。而这里的临时文件和上面所配置的备份文件都会放在这个指定的路径当中，AOF文件也会存放在这个目录下面。注意这里必须指定一个目录而不是文件；
 
 - slaveof
@@ -80,7 +80,15 @@ redis配置文件被分成了几大区域，他们分别是：
     > 指定Redis最大内存限制。Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清楚已到期或即将到期的Key，Redis同时也会移除空的list对象。当此方法处理后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。注意：Redis新的vm机制，会把Key存放内存，Value会存放在swap区；
 
 - maxmemory-policy volatile-lru
-    > 当内存达到最大值的时候Redis会选择删除那些数据呢？有五种方式可供选择：volatile-lru代表利用LRU算法移除设置过期时间的key（LRU：最近使用Least Recently Used），allkeys-lru代表利用LRU算法移除任何key，volarile-random代表移除设置过过期时间的随机key，allkeys-random代表移除一个随机的key，volatile-ttl代表移除即将过期的key（minor TTL），noeviction代表不移除任何key，只是返回一个写错误。注意：对于上面的策略，如果没有合适的key可以移除，写的时候Redis会返回一个错误；
+    > 当内存达到最大值的时候Redis会选择删除那些数据呢？有五种方式可供选择：  
+    > volatile-lru代表利用LRU算法移除设置过期时间的key（LRU：最近使用Least Recently Used），  
+    > allkeys-lru代表利用LRU算法移除任何key，  
+    > volarile-random代表移除设置过过期时间的随机key，  
+    > allkeys-random代表移除一个随机的key，  
+    > volatile-ttl代表移除即将过期的key（minor TTL），  
+    > noeviction代表不移除任何key，只是返回一个写错误。  
+    > 
+    > 注意：对于上面的策略，如果没有合适的key可以移除，写的时候Redis会返回一个错误；
 
 - appendonly no
     > 默认情况下，redis会在后台异步的把数据库镜像备份到磁盘，但是该备份是非常耗时的，而且备份也不能很频繁。如果发生诸如拉闸限电、拔插头等情况，那么将造成比较大范围的数据丢失，所以redis提供了另外一种更加搞笑的数据库备份及灾难恢复方式。开启append only 模式之后，redis会把所接收到的每一次写操作请求都追加到appendonly.aof文件中。当redis重新启动时，会从该文件恢复出之前的状态，但是这样会造成appendonly.aof文件过大，所以redis还支持了BGREWRITEAOF指令对appendonly.aof 进行重新整理，你可以同时开启asynchronous dumps 和 AOF；
