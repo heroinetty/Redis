@@ -1,10 +1,21 @@
-﻿## Redis配置文件
+## Redis配置文件
 
 标签（空格分隔）：参考文档
 
 ---
 
 在启动Redis服务器时，我们需要为其制定一个配置文件，缺省情况下配置文件在Redis的源码目录下，文件名为redis.conf。
+
+redis配置文件被分成了几大区域，他们分别是：
+1. 通用（general）
+2. 快照（snapshotting）
+3. 复制（replication）
+4. 安全（security）
+5. 限制（limits）
+6. 追加模式（append only mode）
+7. LUA脚本（lua scripting）
+8. 慢日志（slow log）
+9. 事件通知（event notification）
 
 为了对Redis的系统实现一个直接的认识，我们首先来看一下Redis的配置文件中定义了那些主要参数以及这些参数的作用。
 
